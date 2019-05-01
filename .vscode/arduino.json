@@ -1,0 +1,4 @@
+{
+    "board": "arduino:avr:yun",
+    "sketch": "Arduino/Tests/single_sensor_test.ino/single_sensor_test.ino"
+}
