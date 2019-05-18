@@ -34,6 +34,8 @@ const char END_MARKER = '\r';
 byte received_bytes = 0;
 boolean recognize_response = false;
 
+// set_filename
+char cust_filename[] = "01234567.csv";
 //======================
 
 
@@ -125,8 +127,12 @@ void data_save(){
     int sensor_reading = analogRead(FSR_PIN);
     readings += sensor_reading;
     
+
+
+    // NEEDS FIXING
     char filename_c = char(filename);
     char name_of_file[BUFFER_SIZE] = filename_c + '.csv';
+    
     File data_file = FileSystem.open(name_of_file, FILE_APPEND);
 
     if (data_file) {
@@ -141,5 +147,23 @@ void data_save(){
 
 void print_readings_to_serial(String readings){
     Serial.println(readings);
+}
+
+
+void set_filename(char *cust_filename){
+    // sets filename for sd card
+    filename[0] = '2';
+    filename[1] = '0';
+    filename[2] = year%10 + '0';
+    filename[3] = year%10 + '0';
+    filename[4] = month/10 + '0';
+    filename[5] = month%10 + '0';
+    filename[6] = day/10 + '0';
+    filename[7] = day%10 + '0';
+    filename[8] = '.';
+    filename[9] = 'c';
+    filename[10] = 's';
+    filename[11] = 'v';
+    return; 
 }
 
